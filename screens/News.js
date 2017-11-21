@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, FlatList } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import 		styles 			from '../styles/main';
 import { events } from '../config/data';
+import Post from '../components/Post.js'
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -29,8 +30,6 @@ class News extends React.Component {
     }
   }
 
-
-
   componentDidMount(){
     this.fetchFbFeeds();
   }
@@ -56,25 +55,21 @@ class News extends React.Component {
   render() {
     items = []
     contents = this.state.posts.map((post) => {
-      items.push(
-        <ListItem
-        hideChevron
-        key={post.id}
-        title={`${post.story} (${post.created_time})`}
-        subtitle={post.message}
-        />)
+      items.push(post)
     });
     const appearance 	= styles ()
     console.log(contents);
     return (
-      <View style={styles.container}>
-      <Text> Test </Text>
-      <ScrollView>
-        <List>
-            {items}
-        </List>
-      </ScrollView>
-      </View>
+      <List>
+        <FlatList
+          data={items}
+          renderItem={({ item }) => (
+            <Post content = {item}
+            />
+          )}
+          keyExtractor={(item, index) => index}
+        />
+      </List>
     );
 }
 

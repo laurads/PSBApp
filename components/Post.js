@@ -1,18 +1,21 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
+import styles from '../styles/post.js';
 
-class Post extends Component {
+class Post extends React.Component {
 
-    constructor(props) {
-        super(props)
+    static propTypes = {
+        content: PropTypes.object.isRequired,
     }
 
-    render(){
+        render = () => {
+            const { content } = this.props;
         return (
-            <TouchableOpacity >
+            <TouchableOpacity style={styles.post}>
                 <View >
-                <Text>this.props.post.story</Text>
-                <Text >this.props.post.message</Text>
+                <Text style={styles.title} >{content.story}</Text>
+                <Text style={styles.content} >{content.message}</Text>
                 </View>
             </TouchableOpacity>
         )
