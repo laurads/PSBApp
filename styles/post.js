@@ -10,20 +10,38 @@ export default StyleSheet.create({
         post: {
             borderWidth: 1,
             borderColor: '#d6d7da',
-            borderRadius: 8,
-            marginLeft: 5,
-            marginTop: 2.5,
-            marginRight: 5,
-            marginLeft: 2.5
+            borderRadius: 5,
+            marginLeft: 10,
+            marginTop: 5,
+            marginRight: 10,
+            paddingTop: 3,
+            paddingRight: 5
         },
         title: {
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: 'bold',
-            padding: 5
+            padding: 5,
+            paddingRight: 50,
           },
           content: {
             fontSize: 10,
             fontWeight: 'normal',
             padding: 5
           },
+          date: {
+            fontSize: 10,
+            fontWeight: 'normal',
+            color: 'grey',
+            padding: 5
+          },
+          icons: {
+            padding: 30,
+            marginRight: 30
+          },
+          head:{
+            flex: 1, 
+            flexDirection: 'row', 
+            alignItems: 'flex-start', 
+            justifyContent: 'space-between'
+          }
     });
