@@ -3,7 +3,7 @@ import { StyleSheet, Text, ScrollView, View, FlatList, StatusBar } from 'react-n
 import { List, ListItem } from 'react-native-elements';
 import 		styles 			from '../styles/main';
 import { events } from '../config/data';
-import Post from '../components/Post.js';
+import Event from '../components/Event.js';
 import NewsHeader from '../components/NewsHeader';
 
 const FBSDK = require('react-native-fbsdk');
@@ -17,17 +17,32 @@ class Events extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      posts: [],
+      events: [],
     };
   }
-  _responsePostsCallback(error: ?Object, result: ?Object) {
+  _responseEventsCallback(error: ?Object, result: ?Object) {
     if (error) {
       alert('Error fetching data: ' + JSON.stringify(error));
     } else {
-      console.log(JSON.stringify(result))
-      this.setState({
-        posts: JSON.parse(JSON.stringify(result)).feed.data
-      })
+      result.events.data.map((event) => {
+        console.log('fetch event wih id ' + event.id )        
+        this.fetchEvent(event.id)
+      });
+    }
+  }
+
+  _getEventCallback(error: ?Object, result: ?Object) {
+    if (error) {
+      alert('Error fetching post from event id: ' + JSON.stringify(error));
+    } else {
+      var events = JSON.parse(JSON.stringify(this.state.events))
+      console.log('adding event to events ' + JSON.stringify(result) )
+      events.push(result)
+      this.setState({events:events});
+      //Sort by ascending start_time
+      events.sort(function(a, b) {
+        return new Date(b.start_time) - new Date(a.start_time);
+      });
     }
   }
 
@@ -41,28 +56,45 @@ class Events extends React.Component {
       {
         parameters: {
           fields: {
-            string: 'feed' 
+            string: 'events' 
           },
           access_token: {
             string: '1213195135447643|ZuJ5SU0YmplfsgWKZsrB6Sg7FPs' 
           }
         }
       },
-      this._responsePostsCallback.bind(this)
+      this._responseEventsCallback.bind(this)
     );
     new GraphRequestManager().addRequest(infoRequest).start();
 }
 
+fetchEvent(id) {    
+  const infoRequest = new GraphRequest(
+    '/'+id,
+    {
+      parameters: {
+        fields: {
+          string: 'cover,name, start_time,place,description'
+        },
+        access_token: {
+          string: '1213195135447643|ZuJ5SU0YmplfsgWKZsrB6Sg7FPs' 
+        }
+      }
+    },
+    this._getEventCallback.bind(this)
+  );
+  new GraphRequestManager().addRequest(infoRequest).start();
+}
+
   render() {
     items = []
-    contents = this.state.posts.map((post) => {
-      items.push(post)
+    contents = this.state.events.map((event) => {
+      items.push(event)
     });
     const appearance 	= styles ()
     console.log(contents);
     return (
       <ScrollView>
-          <NewsHeader/>
           <FlatList
             data={items}
             extraData={this.state}
@@ -74,7 +106,7 @@ class Events extends React.Component {
   }
 
   _renderItem = ({item}) => (
-    <Post content = {item} />
+    <Event content = {item} />
   );
 }
 

@@ -3,6 +3,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import News from '../screens/News';
+import NewsEventsPage from '../screens/NewsEventsPage';
 import Help from '../screens/Help';
 import Projects from '../screens/Projects';
 import ProjectDetail from '../screens/ProjectDetail';
@@ -24,7 +25,7 @@ export const ProjectsStack = StackNavigator({
 
 export const Root = TabNavigator({
   Home: {
-    screen: News,
+    screen: NewsEventsPage,
     navigationOptions: {
       tabBarLabel: 'Actualités',
       tabBarIcon: ({ tintColor }) => <Icon name="event-note" size={35} color={tintColor} />

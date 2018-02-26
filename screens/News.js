@@ -40,8 +40,12 @@ class News extends React.Component {
       console.log('adding post to posts ' + JSON.stringify(result) )
       if(result.status_type != "created_event"){
         posts.push(result)
-        this.setState({posts: posts})
+        this.setState({posts: posts});
       }
+      //Sort by ascending created_time
+      posts.sort(function(a, b) {
+        return new Date(b.created_time) - new Date(a.created_time);
+      });
     }
   }
 
@@ -65,7 +69,7 @@ class News extends React.Component {
       this._getFeedsCallback.bind(this)
     );
     new GraphRequestManager().addRequest(infoRequest).start();
-}
+  }
 
 //enum{mobile_status_update, created_note, added_photos, added_video, 
 //shared_story, created_group, created_event, wall_post, app_created_story, 
@@ -76,7 +80,7 @@ fetchPost(id) {
     {
       parameters: {
         fields: {
-          string: 'status_type,story,message,created_time,link'
+          string: 'status_type,story,message,created_time,permalink_url,attachments'
         },
         access_token: {
           string: '1213195135447643|ZuJ5SU0YmplfsgWKZsrB6Sg7FPs' 
@@ -97,7 +101,6 @@ fetchPost(id) {
     console.log(contents);
     return (
       <ScrollView>
-          <NewsHeader/>
           <FlatList
             data={items}
             extraData={this.state}

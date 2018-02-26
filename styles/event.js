@@ -7,7 +7,7 @@ export const FONT_BOLD = 'OpenSans-Bold';
 export const BORDER_RADIUS = 5;
 
 export default StyleSheet.create({
-        post: {
+        event: {
             borderWidth: 1,
             borderColor: '#d6d7da',
             borderRadius: 5,
@@ -28,32 +28,44 @@ export default StyleSheet.create({
             justifyContent: 'space-between'
         },
         image:{
-            width: 100, 
-            height: 100
+            width: 200, 
+            height: 200,
+            margin:10
         },
         title: {
-            fontSize: 13,
+            fontSize: 12,
             fontWeight: 'bold',
-            padding: 5,
-            paddingRight: 50,
+            paddingTop:10,
+            paddingRight: 20,
+            paddingLeft:5
+          },
+          placeImage:{
+            flexDirection: 'row', 
+            alignItems: 'flex-start',
+            paddingRight: 20,
+            paddingLeft:5
+          },
+          place: {
+            fontSize: 10,
+            fontStyle: 'italic',
           },
           content: {
             fontSize: 10,
             fontWeight: 'normal',
-            padding: 5
+            padding: 10,
           },
           date: {
-            fontSize: 10,
-            fontWeight: 'normal',
-            color: 'grey',
-            padding: 5
+            fontSize: 15,
+            fontWeight: 'bold',
+            padding: 5,
+            flex :1,
           },
           icons: {
             padding: 30,
             marginRight: 30
           },
           head:{
-            flex: 1, 
+            height:40,
             flexDirection: 'row', 
             alignItems: 'flex-start', 
             justifyContent: 'space-between'

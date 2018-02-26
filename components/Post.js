@@ -10,15 +10,56 @@ class Post extends React.Component {
         content: PropTypes.object.isRequired,
     }
 
-    render = () => {
+    constructor(props){
+        super(props);
+        this.state = {
+            images: [],
+            toDisplayImages: [],
+            galeryImages: []
+        };
+    }
+
+    getImagesUrl(){
+        let images_src = []
         const { content } = this.props;
-        
+        var toDisplayImages = [];
+        var galeryImages = [];
+        if(content.attachments 
+            && content.attachments.data.length > 0  
+            && content.attachments.data[0].subattachments 
+            && content.attachments.data[0].subattachments.data.length > 0 ){
+                content.attachments.data[0].subattachments.data.map((img) => {
+                    var uri = img.media.image.src;
+                    var id = img.target.id;
+                    console.log("id: "+id+", uri: "+uri);
+                    if(toDisplayImages.length < 3 ){
+                        toDisplayImages.push(this.renderImage(id,uri))
+                    } 
+            })
+            return toDisplayImages;
+           // this.setState({galeryImages: galeryImages});
+        }
+    }
+
+    renderImage(id,imgUri){
+        return(
+            <Image 
+                key={id}
+                style={styles.image}
+                source={{uri:imgUri}}
+            />
+        )
+    }
+
+    render(){
+        const { content } = this.props;
+        var toDisplayImages = this.getImagesUrl();
         if(content.message){
             return (
             <View style={styles.post}>
                 <View style={styles.head}>
                     <Text style={styles.date} >{Moment(content.created_time).format('LLL')}</Text>
-                    <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL('http://google.com')}>
+                    <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL(content.permalink_url)}>
                         <Image
                             style={{width: 20, height: 20}}
                             source={require('../icons/linkIcon.png')}
@@ -26,6 +67,9 @@ class Post extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.content} >{content.message}</Text>
+                <View style={styles.images}>
+                  {toDisplayImages}      
+                </View>
             </View>
             )
         }else{
