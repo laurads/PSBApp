@@ -4,7 +4,6 @@ import { List, ListItem } from 'react-native-elements';
 import 		styles 			from '../styles/main';
 import { events } from '../config/data';
 import Post from '../components/Post.js';
-import NewsHeader from '../components/NewsHeader';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -20,11 +19,10 @@ class News extends React.Component {
       posts: [],
     };
   }
-  _getFeedsCallback(error: ?Object, result: ?Object) {
+  getFeedsCallback(error: ?Object, result: ?Object) {
     if (error) {
       alert('Error fetching feeds: ' + JSON.stringify(error));
     } else {
-      //console.log(JSON.stringify(result))
       result.posts.data.map((post) => {
         console.log('fetch post wih id ' + post.id )        
         this.fetchPost(post.id)
@@ -32,7 +30,7 @@ class News extends React.Component {
     }
   }
 
-  _getPostCallback(error: ?Object, result: ?Object) {
+  getPostCallback(error: ?Object, result: ?Object) {
     if (error) {
       alert('Error fetching post from post id: ' + JSON.stringify(error));
     } else {
@@ -49,8 +47,10 @@ class News extends React.Component {
     }
   }
 
-  componentDidMount(){
-    this.fetchFbFeeds();
+  componentDidMount(){ 
+    /*if(this.state.posts.length == 0){
+      this.fetchFbFeeds();
+    }*/
   }
 
   fetchFbFeeds() {    
@@ -66,31 +66,28 @@ class News extends React.Component {
           }
         }
       },
-      this._getFeedsCallback.bind(this)
+      this.getFeedsCallback.bind(this)
     );
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
-//enum{mobile_status_update, created_note, added_photos, added_video, 
-//shared_story, created_group, created_event, wall_post, app_created_story, 
-//published_story, tagged_in_photo, approved_friend}
-fetchPost(id) {    
-  const infoRequest = new GraphRequest(
-    '/'+id,
-    {
-      parameters: {
-        fields: {
-          string: 'status_type,story,message,created_time,permalink_url,attachments'
-        },
-        access_token: {
-          string: '1213195135447643|ZuJ5SU0YmplfsgWKZsrB6Sg7FPs' 
+  fetchPost(id) {    
+    const infoRequest = new GraphRequest(
+      '/'+id,
+      {
+        parameters: {
+          fields: {
+            string: 'status_type,story,message,created_time,permalink_url,attachments'
+          },
+          access_token: {
+            string: '1213195135447643|ZuJ5SU0YmplfsgWKZsrB6Sg7FPs' 
+          }
         }
-      }
-    },
-    this._getPostCallback.bind(this)
-  );
-  new GraphRequestManager().addRequest(infoRequest).start();
-}
+      },
+      this.getPostCallback.bind(this)
+    );
+    new GraphRequestManager().addRequest(infoRequest).start();
+  }
 
   render() {
     items = []
@@ -104,14 +101,14 @@ fetchPost(id) {
           <FlatList
             data={items}
             extraData={this.state}
-            renderItem={this._renderItem}
+            renderItem={this.renderItem}
             keyExtractor={(item, index) => index}
           />
       </ScrollView>
     );
   }
 
-  _renderItem = ({item}) => (
+  renderItem = ({item}) => (
     <Post content = {item} />
   );
 }

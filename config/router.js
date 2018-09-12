@@ -5,14 +5,15 @@ import { Icon } from 'react-native-elements';
 import News from '../screens/News';
 import NewsEventsPage from '../screens/NewsEventsPage';
 import Help from '../screens/Help';
-import Projects from '../screens/Projects';
+import ProjectsPage from '../screens/ProjectsPage';
 import ProjectDetail from '../screens/ProjectDetail';
 
 export const ProjectsStack = StackNavigator({
   Projects: {
-    screen: Projects,
+    screen: ProjectsPage,
     navigationOptions: {
       title: 'Projets',
+      header: null //this will hide the header
     },
   },
   Details: {

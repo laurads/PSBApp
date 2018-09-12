@@ -25,11 +25,13 @@ export default StyleSheet.create({
             flex: 1, 
             flexDirection: 'row', 
             alignItems: 'flex-start', 
-            justifyContent: 'space-between'
+            justifyContent: 'center'
         },
         image:{
             width: 100, 
-            height: 100
+            height: 100,
+            marginLeft:5,
+            marginRight:5
         },
         title: {
             fontSize: 13,

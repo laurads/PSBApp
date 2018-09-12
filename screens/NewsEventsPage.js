@@ -7,15 +7,24 @@ import News from './News';
 import Events from './Events';
 import HeaderButtonGroup from '../components/HeaderButtonGroup';
 import HeaderSearchBar from '../components/HeaderSearchBar';
+import PageHeader from '../components/PageHeader';
 
 const height = Dimensions.height;
 
 class NewsEventsPage extends React.Component {
 
+  static navigationOptions= {
+    title: '',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+  };
+
   constructor () {
     super()
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
     }
   }
 
@@ -27,42 +36,14 @@ class NewsEventsPage extends React.Component {
 
   }
 
-  getBody(){
-    if(this.state.selectedIndex == 0){
-      return <News/>
-    }else{
-      return <Events/>
-    }
-  }
-
   render() {
     const component1 = () => <Text>Journal</Text>
     const component2 = () => <Text>Agenda</Text>
     const buttons = [{ element: component1 }, { element: component2 }]
     const { selectedIndex } = this.state
-    var body = this.getBody();
     return (
       <View style={{flex: 1, flexDirection: 'column'}} >
-          <View
-          style={{
-            height: 20,
-            backgroundColor: "black",
-          }}/>
-          <StatusBar
-                hidden = {false}
-                barStyle="light-content"
-                backgroundColor="rgba(0, 0, 0, 0.20)"
-          />
-          <View
-          style={{
-            height: 40,
-            backgroundColor: "green",
-          }}>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../img/psbLogo.jpg')}
-          />
-          </View>
+          <PageHeader/>
           <View
             style={{
               height: 80,
@@ -77,7 +58,8 @@ class NewsEventsPage extends React.Component {
             <HeaderSearchBar />
           </View>
           <View style={{flex: 6}}>
-          {body}
+            {selectedIndex==0? <News/>: null}
+            {selectedIndex==1? <Events/>: null}
           </View>
       </View>);
     }

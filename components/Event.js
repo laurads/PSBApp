@@ -57,6 +57,12 @@ class Event extends React.Component {
                         <Text style={styles.title} >{content.name}</Text>
                         {place}
                     </View>
+                    <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL("https://www.facebook.com/events/"+content.id)}>
+                        <Image
+                            style={{width: 20, height: 20}}
+                            source={require('../icons/linkIcon.png')}
+                        />
+                    </TouchableOpacity>
                 </View>
                 <View style={{flex:1}}>
                     {cover}

@@ -4,7 +4,6 @@ import { List, ListItem } from 'react-native-elements';
 import 		styles 			from '../styles/main';
 import { events } from '../config/data';
 import Event from '../components/Event.js';
-import NewsHeader from '../components/NewsHeader';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -20,7 +19,7 @@ class Events extends React.Component {
       events: [],
     };
   }
-  _responseEventsCallback(error: ?Object, result: ?Object) {
+  responseEventsCallback(error: ?Object, result: ?Object) {
     if (error) {
       alert('Error fetching data: ' + JSON.stringify(error));
     } else {
@@ -31,7 +30,7 @@ class Events extends React.Component {
     }
   }
 
-  _getEventCallback(error: ?Object, result: ?Object) {
+  getEventCallback(error: ?Object, result: ?Object) {
     if (error) {
       alert('Error fetching post from event id: ' + JSON.stringify(error));
     } else {
@@ -63,7 +62,7 @@ class Events extends React.Component {
           }
         }
       },
-      this._responseEventsCallback.bind(this)
+      this.responseEventsCallback.bind(this)
     );
     new GraphRequestManager().addRequest(infoRequest).start();
 }
@@ -81,7 +80,7 @@ fetchEvent(id) {
         }
       }
     },
-    this._getEventCallback.bind(this)
+    this.getEventCallback.bind(this)
   );
   new GraphRequestManager().addRequest(infoRequest).start();
 }
@@ -98,14 +97,14 @@ fetchEvent(id) {
           <FlatList
             data={items}
             extraData={this.state}
-            renderItem={this._renderItem}
+            renderItem={this.renderItem}
             keyExtractor={(item, index) => index}
           />
       </ScrollView>
     );
   }
 
-  _renderItem = ({item}) => (
+  renderItem = ({item}) => (
     <Event content = {item} />
   );
 }
