@@ -17,7 +17,7 @@ export default class Projects extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      data: [],
+      projects: {},
       categories: []
     }
   }
@@ -33,14 +33,20 @@ export default class Projects extends React.Component {
         }
     });
     console.log("Call API");
-    var categoriesSet = new Set();
+    let categoriesSet = new Set();
+    let projectsMap = {};
     API.get('PROJECTSCRUD','/PROJECTS')
         .then(data => {
             data.map((project) => {
               categoriesSet.add(project.CATEGORY);
+              if(projectsMap[project.CATEGORY]){
+                projectsMap[project.CATEGORY].push(project);
+              }else{
+                projectsMap[project.CATEGORY]=[project];
+              }
             })
             this.setState({
-                data: data,
+                projects: projectsMap,
                 loading: false,
                 categories:[...categoriesSet],
             });
@@ -78,14 +84,14 @@ export default class Projects extends React.Component {
           renderItem={({item,index}) => {
               return(
                   <SquaresRow
-                  projects={this.state.data}
+                  projects={this.state.projects[item]}
                   category={item}
                   index={index}
                   parentFlatList={this}>
                   </SquaresRow>
               )
           }}
-          keyExtractor={(item,index) => item.ID}>
+          keyExtractor={(item,index) => index}>
         </FlatList> 
       </View>
     );

@@ -33,7 +33,7 @@ export default class SquaresRow extends React.Component {
                     </SquareView>
                 )
             }}
-            keyExtractor={(item,index) => item.ID}>
+            keyExtractor={(item,index) => index}>
 
             </FlatList>
         </View>);
