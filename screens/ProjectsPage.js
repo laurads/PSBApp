@@ -8,16 +8,12 @@ import HeaderSearchBar from '../components/HeaderSearchBar';
 
 const height = Dimensions.height;
 
-class NewsEventsPage extends React.Component {
+class ProjectsPage extends React.Component {
 
   constructor () {
     super()
     this.state = {
     }
-  }
-
-  updateSearchContent(){
-
   }
 
   render() {
@@ -26,7 +22,7 @@ class NewsEventsPage extends React.Component {
         <PageHeader/>
         <View style={{flex: 1, flexDirection: 'column', backgroundColor: "white",
               alignItems: 'center', width: '100%'}} >
-            <HeaderSearchBar />
+            {/*<HeaderSearchBar /> */}
             <Projects/>
         </View>
       </View>);
@@ -34,4 +30,4 @@ class NewsEventsPage extends React.Component {
 
 }
 
-export default NewsEventsPage;
+export default ProjectsPage;

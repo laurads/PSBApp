@@ -19,8 +19,13 @@ export default class SquaresRow extends React.Component {
             alignItems: 'center',
             margin: 5}}>
             <Text 
-            style={{fontSize:20, fontWeight: 'bold'}}
-            > {this.props.category} </Text>
+            style={{
+                fontSize:16, 
+                fontWeight: 'bold',
+                fontFamily: 'Helvetica'
+            }}> 
+                {this.props.category} 
+            </Text>
             <FlatList 
             horizontal={true}
             data={items}

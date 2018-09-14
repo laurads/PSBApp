@@ -7,11 +7,6 @@ import { projects } from '../config/data';
 import SquaresRow from '../components/SquaresRow.js';
 
 export default class Projects extends React.Component {
-  
-  
-  onLearnMore = (project) => {
-    this.props.navigation.navigate('Details', { ...project });
-  };
 
   constructor(props){
     super(props);
@@ -71,12 +66,7 @@ export default class Projects extends React.Component {
               subtitle={project.DESCRIPTION}
               onPress={() => this.onLearnMore(project)}
             />
-          ))}
-        </List> 
-        <SquaresRow 
-        projects={this.state.data}
-        category="France">
-        </SquaresRow>*/}
+          ))}*/}
 
 
         <FlatList 

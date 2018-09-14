@@ -7,6 +7,7 @@ import NewsEventsPage from '../screens/NewsEventsPage';
 import Help from '../screens/Help';
 import ProjectsPage from '../screens/ProjectsPage';
 import ProjectDetail from '../screens/ProjectDetail';
+import SquareView from '../components/SquareView';
 
 export const ProjectsStack = StackNavigator({
   Projects: {
@@ -19,7 +20,7 @@ export const ProjectsStack = StackNavigator({
   Details: {
     screen: ProjectDetail,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.name.toUpperCase()}`,
+      title: `${navigation.state.params.project.NAME.toUpperCase()}`,
     }),
   },
 });
