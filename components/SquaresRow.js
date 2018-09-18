@@ -16,15 +16,17 @@ export default class SquaresRow extends React.Component {
         style={{
             flex: 1, 
             flexDirection: 'column', 
-            alignItems: 'center',
+            alignItems: 'flex-start',
             margin: 5}}>
             <Text 
             style={{
                 fontSize:16, 
-                fontWeight: 'bold',
-                fontFamily: 'Helvetica'
+                fontFamily: 'Helvetica',
+                marginBottom: 3,
+                marginLeft: 5,
+                marginTop:8
             }}> 
-                {this.props.category} 
+                {this.props.category.toUpperCase()}
             </Text>
             <FlatList 
             horizontal={true}

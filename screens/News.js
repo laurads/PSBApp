@@ -19,7 +19,7 @@ class News extends React.Component {
       posts: [],
     };
   }
-  getFeedsCallback(error: ?Object, result: ?Object) {
+  getFeedsCallback(error, result) {
     if (error) {
       alert('Error fetching feeds: ' + JSON.stringify(error));
     } else {
@@ -30,7 +30,7 @@ class News extends React.Component {
     }
   }
 
-  getPostCallback(error: ?Object, result: ?Object) {
+  getPostCallback(error, result) {
     if (error) {
       alert('Error fetching post from post id: ' + JSON.stringify(error));
     } else {
@@ -48,9 +48,9 @@ class News extends React.Component {
   }
 
   componentDidMount(){ 
-    /*if(this.state.posts.length == 0){
+    if(this.state.posts.length == 0){
       this.fetchFbFeeds();
-    }*/
+    }
   }
 
   fetchFbFeeds() {    

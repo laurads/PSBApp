@@ -19,7 +19,7 @@ class Events extends React.Component {
       events: [],
     };
   }
-  responseEventsCallback(error: ?Object, result: ?Object) {
+  responseEventsCallback(error, result) {
     if (error) {
       alert('Error fetching data: ' + JSON.stringify(error));
     } else {
@@ -30,7 +30,7 @@ class Events extends React.Component {
     }
   }
 
-  getEventCallback(error: ?Object, result: ?Object) {
+  getEventCallback(error, result) {
     if (error) {
       alert('Error fetching post from event id: ' + JSON.stringify(error));
     } else {

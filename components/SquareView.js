@@ -16,18 +16,19 @@ class SquareView extends React.Component {
                 flex: 1,
                 flexDirection: 'column',
                 alignItems: 'center',
-                height: 220,
-                width: 170,
+                height: 200,
+                width: 150,
                 backgroundColor: "white",
-                borderWidth: 0
+                borderWidth: 1,
+                borderColor: '#d6d7da',
+                borderRadius : 5,
+                margin: 5
             }}
             onPress={() => this.onLearnMore(project)}>
             <Image
                 style ={{
-                    width : 150, 
-                    height:150, 
-                    margin:10,
-                    borderRadius: 8
+                    width : 148, 
+                    height:150,
                 }}
                 source={{uri:project.COVER_IMG}}
             />
@@ -35,6 +36,7 @@ class SquareView extends React.Component {
             style={{
                 textAlign: 'center',
                 fontSize: 12,
+                margin: 10,
                 fontFamily: 'Helvetica'
             }}>
             {project.NAME}</Text>

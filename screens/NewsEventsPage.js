@@ -55,7 +55,7 @@ class NewsEventsPage extends React.Component {
             callbackFunction={this.updateIndexCallback}
             leftTitle="Journal"
             rightTitle="Agenda"/>
-            <HeaderSearchBar />
+         {/*   <HeaderSearchBar /> */}
           </View>
           <View style={{flex: 6}}>
             {selectedIndex==0? <News/>: null}
