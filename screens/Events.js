@@ -23,7 +23,7 @@ class Events extends React.Component {
     if (error) {
       alert('Error fetching data: ' + JSON.stringify(error));
     } else {
-      result.events.data.map((event) => {
+        result.events.data.map((event) => {
         console.log('fetch event wih id ' + event.id )        
         this.fetchEvent(event.id)
       });

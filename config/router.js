@@ -8,6 +8,10 @@ import Help from '../screens/Help';
 import ProjectsPage from '../screens/ProjectsPage';
 import ProjectDetail from '../screens/ProjectDetail';
 import SquareView from '../components/SquareView';
+import Members from '../screens/Members';
+import Contacts from '../screens/Contacts';
+import Companies from '../screens/Companies';
+import Donation from '../screens/Donation';
 
 export const ProjectsStack = StackNavigator({
   Projects: {
@@ -25,6 +29,43 @@ export const ProjectsStack = StackNavigator({
   },
 });
 
+export const HelpStack = StackNavigator({
+  GetInvolved: {
+    screen: Help,
+    navigationOptions: {
+      header: null //this will hide the header
+    },
+  },
+
+  Members:{
+    screen: Members,
+    navigationOptions:{
+      title: 'Devenir membre'
+    }
+  },
+
+  Donation:{
+    screen : Donation,
+    navigationOptions:{
+      title: 'Faire un don'
+    }
+  },
+
+  Contacts:{
+    screen : Contacts,
+    navigationOptions:{
+      title: 'Contacts'
+    }
+  },
+
+  Companies:{
+    screen : Companies,
+    navigationOptions:{
+      title: 'Espace entreprise'
+    }
+  }
+})
+
 export const Root = TabNavigator({
   Home: {
     screen: NewsEventsPage,
@@ -41,7 +82,7 @@ export const Root = TabNavigator({
     },
   },
   GetInvolved: {
-    screen: Help,
+    screen: HelpStack,
     navigationOptions: {
       tabBarLabel: 'Nous aider',
       tabBarIcon: ({ tintColor }) => <Icon name="thumb-up" size={35} color={tintColor} />,

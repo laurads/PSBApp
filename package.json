@@ -21,6 +21,7 @@
     "react-native-elements": "^0.18.2",
     "react-native-fbsdk": "^0.6.3",
     "react-native-image-gallery": "^2.1.5",
+    "react-native-paypal": "smarkets/react-native-paypal",
     "react-native-twitter": "^0.2.1",
     "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.19"

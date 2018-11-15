@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, WebView } from 'react-native';
+import { View, Text, WebView, Platform } from 'react-native';
 import 		styles 			from '../styles/main';
 
 export default class ProjectDetail extends React.Component {
@@ -8,13 +8,14 @@ export default class ProjectDetail extends React.Component {
     {/*scalesPageToFit={(Platform.OS === 'ios') ? false : true} */}
 
     return (
-      <ScrollView
-      style={{flex:1,backgroundColor: 'white', width: '100%', height: '100%'}}>
-          <WebView
-          style={{height : 200, width: 350, marginTop: 20, backgroundColor: 'red'}}
+      <View 
+      style={{flex:1, alignContent: 'center', backgroundColor: 'white'}}>
+          <WebView 
+          style={{flex: 8, marginTop: 20}}
+          scalesPageToFit={(Platform.OS === 'ios')?false:true}
           source={{html: project.DESCRIPTION}}
           />
-      </ScrollView>
+      </View>
     );
   }
 }
