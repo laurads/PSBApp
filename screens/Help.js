@@ -6,6 +6,7 @@ import {API} from 'aws-amplify';
 import Members from'../screens/Members';
 import { withNavigation } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import PageHeader from '../components/PageHeader';
 
 class Help extends React.Component {
   constructor ( props ) {
@@ -65,6 +66,7 @@ class Help extends React.Component {
     ];
     return (
       <View style={{flex: 1, flexDirection: 'column', width: '100%', marginTop: 20, backgroundColor: 'white'}}>
+        <PageHeader/>
         <WebView 
           source={{html: this.state.welcomeText}}
           scalesPageToFit={(Platform.OS === 'ios')?false:true}

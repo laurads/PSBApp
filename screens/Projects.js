@@ -51,12 +51,18 @@ export default class Projects extends React.Component {
 
 
   render() {
-    items = [];
-    contents = this.state.categories.map((category) => {
+    let items = [];
+    this.state.categories.map((category) => {
         items.push(category)
       });
+    let projects = this.state.projects;
     return (
-      <View style={{flex: 1, flexDirection: 'column', width: '100%'}}>
+      <View 
+        style={{
+          flex: 1, 
+          flexDirection: 'column', 
+          width: '100%'}}
+        >
        {/* <List>
           {!this.state.loading && this.state.data.map((project) => (
             <ListItem
@@ -68,21 +74,22 @@ export default class Projects extends React.Component {
             />
           ))}*/}
 
-
-        <FlatList 
-          data={items}
-          renderItem={({item,index}) => {
-              return(
-                  <SquaresRow
-                  projects={this.state.projects[item]}
-                  category={item}
-                  index={index}
-                  parentFlatList={this}>
-                  </SquaresRow>
-              )
-          }}
-          keyExtractor={(item,index) => index}>
-        </FlatList> 
+        { items.length > 0 && projects.length >0 &&
+          <FlatList 
+            data={items}
+            renderItem={({item,index}) => {
+                return(
+                    <SquaresRow
+                      projects={projects[item]}
+                      category={item}
+                      index={index}
+                      parentFlatList={this}>
+                    </SquaresRow>
+                )
+            }}
+            keyExtractor={(item,index) => index.toString()}>
+          </FlatList> 
+        }
       </View>
     );
   }

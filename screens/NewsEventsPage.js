@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, FlatList, StatusBar,Image, Dimensions } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
-import 		styles 			from '../styles/main';
+import { View, Text, Dimensions } from 'react-native';
+import { List} from 'react-native-elements';
+import styles from '../styles/main';
 import { events } from '../config/data';
 import News from './News';
 import Events from './Events';
@@ -46,18 +46,20 @@ class NewsEventsPage extends React.Component {
           <PageHeader/>
           <View
             style={{
-              height: 80,
               backgroundColor: "white",
               flex: 1, flexDirection: 'column',
               alignItems: 'center',
             }}>
             <HeaderButtonGroup
-            callbackFunction={this.updateIndexCallback}
-            leftTitle="Journal"
-            rightTitle="Agenda"/>
+              callbackFunction={this.updateIndexCallback}
+              leftTitle="Journal"
+              rightTitle="Agenda"
+            />
          {/*   <HeaderSearchBar /> */}
           </View>
-          <View style={{flex: 6}}>
+          <View 
+            style={{flex: 6}}
+          >
             {selectedIndex==0? <News/>: null}
             {selectedIndex==1? <Events/>: null}
           </View>

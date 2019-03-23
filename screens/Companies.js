@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, WebView, Platform } from 'react-native';
+import { View, WebView, Platform } from 'react-native';
 import 		styles 			from '../styles/main';
-import {API} from 'aws-amplify';
+import {getCompaniesText} from '../api/fetchApi';
 
 export default class Companies extends React.Component {
   constructor ( props ) {
@@ -23,7 +23,7 @@ export default class Companies extends React.Component {
         }
     });
     console.log("Call DESCRIPTIONCRUD API");
-    API.get('DESCRIPTIONCRUD','/DESCRIPTION/COMPANIES_TEXT')
+    getCompaniesText()
         .then(data => {
           console.log('DESCRIPTIONCRUD data:' + data)
           this.setState({

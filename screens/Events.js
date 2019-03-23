@@ -98,7 +98,7 @@ fetchEvent(id) {
             data={items}
             extraData={this.state}
             renderItem={this.renderItem}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => index.toString()}
           />
       </ScrollView>
     );

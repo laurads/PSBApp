@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, WebView, Platform } from 'react-native';
-import 		styles 			from '../styles/main';
+import { View, WebView, Platform } from 'react-native';
+import styles from '../styles/main';
 
 export default class ProjectDetail extends React.Component {
   render() {
@@ -9,13 +9,19 @@ export default class ProjectDetail extends React.Component {
 
     return (
       <View 
-      style={{flex:1, alignContent: 'center', backgroundColor: 'white'}}>
-          <WebView 
-          style={{flex: 8, marginTop: 20}}
+        style={{
+          flex:1, 
+          alignContent: 'center', 
+          backgroundColor: 'white'}}
+      >
+        <WebView 
+          style={{
+            flex: 8, 
+            marginTop: 20}}
           scalesPageToFit={(Platform.OS === 'ios')?false:true}
           source={{html: project.DESCRIPTION}}
-          />
-      </View>
+        />
+    </View>
     );
   }
 }

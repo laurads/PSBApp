@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, FlatList, View, Image } from 'react-native';
-import 		styles 			from '../styles/main';
+import { Text, FlatList, View} from 'react-native';
+import styles from '../styles/main';
 import PropTypes from 'prop-types'
 import SquareView from './SquareView.js'
 
@@ -8,9 +8,9 @@ export default class SquaresRow extends React.Component {
 
     render() {
         items = [];
-        contents = this.props.projects.map((project) => {
+        this.props.projects.map((project) => {
             items.push(project)
-          });
+        });
         return (
         <View 
         style={{
@@ -34,13 +34,13 @@ export default class SquaresRow extends React.Component {
             renderItem={({item,index}) => {
                 return(
                     <SquareView 
-                    project={item}
-                    index={index}
-                    parentFlatList={this}>
+                        project={item}
+                        index={index}
+                        parentFlatList={this}>
                     </SquareView>
                 )
             }}
-            keyExtractor={(item,index) => index}>
+            keyExtractor={(item,index) => index.toString()}>
 
             </FlatList>
         </View>);
@@ -48,7 +48,7 @@ export default class SquaresRow extends React.Component {
 
 }
 
-SquareView.PropTypes = {
+SquareView.propTypes = {
     projects: PropTypes.object.isRequired,
     category: PropTypes.string.isRequired,
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, Image, TouchableOpacity } from 'react-native';
-import 		styles 			from '../styles/main';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import styles from '../styles/main';
 import PropTypes from 'prop-types';
-import { StackNavigator } from 'react-navigation';
 import Details from'../screens/ProjectDetail';
 import { withNavigation } from 'react-navigation';
 
@@ -52,6 +51,6 @@ class SquareView extends React.Component {
 
 export default withNavigation(SquareView);
 
-SquareView.PropTypes = {
+SquareView.propTypes = {
     project: PropTypes.object.isRequired,
 }

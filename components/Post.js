@@ -121,17 +121,30 @@ class Post extends React.Component {
                     closeCallback={this.closeModal}
                 />
                 <View style={styles.head}>
-                    <Text style={styles.date} >{Moment(content.created_time).format('LLL')}</Text>
-                    <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL(content.permalink_url)}>
+                    <Text style={styles.date} >
+                        {Moment(content.created_time).format('LLL')}
+                    </Text>
+                    <TouchableOpacity 
+                        style={styles.icon} 
+                        onPress={() => Linking.openURL(content.permalink_url)}
+                    >
                         <Image
-                            style={{width: 20, height: 20}}
+                            style={{
+                                width: 20, 
+                                height: 20
+                            }}
                             source={require('../icons/linkIcon.png')}
                         />
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.content} >{content.message}</Text>
-                <TouchableOpacity style={styles.images} onPress={()=> this.openModal()}>
-                  {toDisplayImages}      
+                <Text style={styles.content} >
+                    {content.message}
+                </Text>
+                <TouchableOpacity 
+                    style={styles.images} 
+                    onPress={()=> this.openModal()}
+                >
+                    {toDisplayImages}      
                 </TouchableOpacity>
             </View>
             )

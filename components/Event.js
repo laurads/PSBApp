@@ -10,16 +10,24 @@ class Event extends React.Component {
         content: PropTypes.object.isRequired,
     }
 
-    getPlaceName(){
+    getPlaceName (){
         var content = this.props.content;
         if(content.place && content.place.name){
             return(
-                <View style={styles.placeImage}>
+                <View 
+                    style={styles.placeImage}>
                     <Image
-                        style={{width: 12, height: 12}}
+                        style={{
+                            width: 12, 
+                            height: 12
+                        }}
                         source={require('../icons/placeIcon.png')}
                     />
-                    <Text style={styles.place} >{content.place.name}</Text>
+                    <Text 
+                        style={styles.place} 
+                        >
+                        {content.place.name}
+                    </Text>
                 </View>
             )
         }
@@ -29,7 +37,11 @@ class Event extends React.Component {
         if(this.props.content.cover && this.props.content.cover.source){
             var coverUri = this.props.content.cover.source;
             return(
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <View 
+                    style={{
+                        alignItems: 'center', 
+                        justifyContent: 'center'
+                    }}>
                     <Image 
                         style={styles.image}
                         source={{uri:coverUri}}
@@ -50,23 +62,41 @@ class Event extends React.Component {
             <View style={styles.event}>
                 <View style={styles.head}>
                     <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={styles.date} >{Moment(content.start_time).format('DD MMM').toUpperCase()}</Text>
-                        <Text style={styles.date} >{Moment(content.start_time).format('YYYY')}</Text>
+                        <Text style={styles.date} >
+                            {Moment(content.start_time).format('DD MMM').toUpperCase()}
+                        </Text>
+                        <Text style={styles.date} >
+                            {Moment(content.start_time).format('YYYY')}
+                        </Text>
                     </View>
                     <View style={{flex:4}}>
-                        <Text style={styles.title} >{content.name}</Text>
+                        <Text style={styles.title} >
+                            {content.name}
+                        </Text>
                         {place}
                     </View>
-                    <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL("https://www.facebook.com/events/"+content.id)}>
+                    <TouchableOpacity 
+                        style={styles.icon} 
+                        onPress={() => Linking.openURL("https://www.facebook.com/events/"+content.id)}
+                    >
                         <Image
-                            style={{width: 20, height: 20}}
+                            style={{
+                                width: 20, 
+                                height: 20
+                            }}
                             source={require('../icons/linkIcon.png')}
                         />
                     </TouchableOpacity>
                 </View>
-                <View style={{flex:1}}>
+                <View 
+                    style={{flex:1}}
+                >
                     {cover}
-                    <Text style={styles.content} >{content.description}</Text>
+                    <Text 
+                        style={styles.content}
+                    >
+                        {content.description}
+                        </Text>
                 </View>
             </View>
             )

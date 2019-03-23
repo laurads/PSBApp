@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, FlatList, StatusBar } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ScrollView, View, FlatList } from 'react-native';
 import 		styles 			from '../styles/main';
-import { events } from '../config/data';
 import Post from '../components/Post.js';
 
 const FBSDK = require('react-native-fbsdk');
@@ -24,8 +22,8 @@ class News extends React.Component {
       alert('Error fetching feeds: ' + JSON.stringify(error));
     } else {
       result.posts.data.map((post) => {
-        console.log('fetch post wih id ' + post.id )        
-        this.fetchPost(post.id)
+        console.log('fetch post wih id ' + post.id );  
+        this.fetchPost(post.id);
       });
     }
   }
@@ -34,10 +32,10 @@ class News extends React.Component {
     if (error) {
       alert('Error fetching post from post id: ' + JSON.stringify(error));
     } else {
-      var posts = JSON.parse(JSON.stringify(this.state.posts))
-      console.log('adding post to posts ' + JSON.stringify(result) )
+      var posts = JSON.parse(JSON.stringify(this.state.posts));
+      console.log('adding post to posts ' + JSON.stringify(result) );
       if(result.status_type != "created_event"){
-        posts.push(result)
+        posts.push(result);
         this.setState({posts: posts});
       }
       //Sort by ascending created_time
@@ -94,7 +92,7 @@ class News extends React.Component {
     contents = this.state.posts.map((post) => {
       items.push(post)
     });
-    const appearance 	= styles ()
+    const appearance 	= styles ();
     console.log(contents);
     return (
       <ScrollView>
@@ -102,7 +100,7 @@ class News extends React.Component {
             data={items}
             extraData={this.state}
             renderItem={this.renderItem}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => index.toString()}
           />
       </ScrollView>
     );
